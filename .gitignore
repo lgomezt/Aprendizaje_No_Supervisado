@@ -3,10 +3,7 @@
 
 ## Here goes the list of folders and internal files to ignore 
 
-
-
-
-
+*.docx
 
 
 
@@ -240,5 +237,36 @@ po/*~
 ### R.Bookdown Stack ###
 # R package: bookdown caching files
 /*_files/
+
+
+# Latex
+*.aux
+*.glo
+*.idx
+*.log
+*.toc
+*.ist
+*.acn
+*.acr
+*.alg
+*.bbl
+*.blg
+*.dvi
+*.glg
+*.gls
+*.ilg
+*.ind
+*.lof
+*.lot
+*.maf
+*.mtc
+*.mtc1
+*.out
+*.synctex.gz
+*.fls
+*.snm
+*.nav
+*.fdb_latexmk
+*.vrb
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,python,r,jupyternotebooks
