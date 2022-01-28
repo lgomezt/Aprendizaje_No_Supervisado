@@ -6,7 +6,8 @@
 # *.docx
 # *.pdf
 
-
+Figuras/*
+Talleres
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
@@ -29,6 +30,7 @@ ipython_config.py
 
 # Icon must end with two \r
 Icon
+Icon*
 
 
 # Thumbnails
