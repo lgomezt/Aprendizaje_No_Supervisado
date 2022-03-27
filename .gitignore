@@ -3,8 +3,9 @@
 
 ## Here goes the list of folders and internal files to ignore 
 
-# *.docx
-# *.pdf
+.docx
+.pdf
+.py 
 
 Figuras/*
 Talleres
