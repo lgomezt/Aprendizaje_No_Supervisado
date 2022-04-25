@@ -1,0 +1,488 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+En lo que sigue detallamos como obtener los parametros 
+\begin_inset Formula $\ensuremath{\theta=\{\mu_{k},\Sigma_{k},\pi_{k}\}}$
+\end_inset
+
+ por maxima verosimilitud.
+ Partiendo de asumir que los datos son 
+\begin_inset Formula $iid$
+\end_inset
+
+ y recordando que la funcion de densidad de la Normal esta dada por:
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathcal{N}(x|\mu,\Sigma)=\det(2\pi\Sigma)^{-\frac{1}{2}}\,\exp(-\frac{1}{2}(x-\mu)'\Sigma^{-1}(x-\mu))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La función de log-verosimilitud es:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{L}=\log f(X|\theta)+\lambda\left(\sum_{k=1}^{K}\pi_{k}-1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=\sum_{n=1}^{N}\mathcal{\log}f(x_{i}|\theta)+\lambda\left(\sum_{k=1}^{K}\pi_{k}-1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=\sum_{n=1}^{N}\log\sum_{k=1}^{K}\pi_{k}\mathcal{N}(x_{i}|\mu_{k},\Sigma_{k})+\lambda\left(\sum_{k=1}^{K}\pi_{k}-1\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+donde, la diferencia con la funciones comunes es que incorpora la restrición
+ de que los pesos deben sumar uno.
+ El paso siguiente entonces es obtener el gradiente (por ahora omitiremos
+ la parte de la restrición hasta el momento de discutir los pesos):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\mathcal{L}}{\partial\theta}=0\iff\sum_{n=1}^{N}\frac{\partial\mathcal{\log}f(x_{i}|\theta)}{\partial\theta}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+en este caso serán tres: 
+\begin_inset Formula $\frac{\partial\mathcal{L}}{\partial\mu_{k}}=0$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\partial\mathcal{L}}{\partial\Sigma_{k}}=0$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\partial\mathcal{L}}{\partial\pi_{k}}=0$
+\end_inset
+
+.
+ Notemos que 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\mathcal{\log}f(x_{i}|\theta)}{\partial\theta}=\frac{1}{f(x_{i}|\theta)}\frac{\partial f(x_{i}|\theta)}{\partial\theta}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+donde
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f(x_{i}|\theta)=\sum_{k=1}^{K}\pi_{k}\mathcal{N}(x_{i}|\mu_{k},\Sigma_{k})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+y
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial f(x_{i}|\theta)}{\partial\mu_{k}}=\sum_{k=1}^{K}\pi_{k}\frac{\partial\mathcal{N}(x|\mu_{k},\Sigma_{k})}{\partial\mu_{k}}=\sum_{k=1}^{K}\pi_{k}(x_{i}-\mu_{k})'\Sigma_{k}^{-1}\mathcal{N}(x_{i}|\mu_{k},\Sigma_{k})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+por lo que 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\mathcal{\log}f(x_{i}|\theta)}{\partial\mu_{k}}=\sum_{k=1}^{K}(x_{i}-\mu_{k})'\Sigma_{k}^{-1}\underset{r_{ik}}{\underbrace{\frac{\pi_{k}\mathcal{N}(x_{i}|\mu_{k},\Sigma_{k})}{\sum_{k=1}^{K}\pi_{k}\mathcal{N}(x_{i}|\mu_{k},\Sigma_{k})}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+el termino 
+\begin_inset Formula $r_{ik}$
+\end_inset
+
+ se denomina responsabilidad del componente de la mezcla 
+\begin_inset Formula $k$
+\end_inset
+
+ por el 
+\begin_inset Formula $n-ésimo$
+\end_inset
+
+ punto de la muestra.
+ Por lo tanto, el componente va a tener una alta responsabilidad cuando
+ el punto tienen una alta probabilidad de haber surgido de es componente.
+ Notemos ademas que este término no es otra cosa que un vector de probabilidades
+ normalizado y por lo tanto 
+\begin_inset Formula $r_{ik}\geq0$
+\end_inset
+
+ y 
+\begin_inset Formula $\sum_{k=1}^{K}r_{ik}=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}r_{ik}\pi_{k}(x_{i}-\mu_{k})'\Sigma_{k}^{-1}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}r_{ik}x_{i}=\sum_{i=1}^{n}r_{ik}\mu_{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{k}^{*}=\frac{\sum_{i=1}^{n}r_{ik}x_{i}}{\sum_{i=1}^{n}r_{ik}}=\frac{1}{N_{k}}\sum_{i=1}^{n}r_{ik}x_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+donde definimos 
+\begin_inset Formula $\sum_{i=1}^{n}r_{ik}=N_{k}$
+\end_inset
+
+ como la responsabilidad total del componente 
+\begin_inset Formula $k-ésimo$
+\end_inset
+
+ para la muestra completa.
+\end_layout
+
+\begin_layout Standard
+Del mismo modo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\mathcal{L}}{\partial\Sigma_{k}}=0\iff\Sigma_{k}^{*}=\frac{1}{N_{k}}\sum_{i=1}^{n}r_{ik}(x_{i}-\mu_{k})(x_{i}-\mu_{k})'
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+y para el los pesos 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\mathcal{L}}{\partial\pi_{k}}=\sum_{n=1}^{N}\frac{\mathcal{N}(x_{i}|\mu_{k},\Sigma_{k})}{\sum_{k=1}^{K}\pi_{k}\mathcal{N}(x_{i}|\mu_{k},\Sigma_{k})}+\lambda
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=\frac{1}{\pi_{k}}\sum_{n=1}^{N}\frac{\pi_{k}\mathcal{N}(x_{i}|\mu_{k},\Sigma_{k})}{\sum_{k=1}^{K}\pi_{k}\mathcal{N}(x_{i}|\mu_{k},\Sigma_{k})}+\lambda
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=\frac{N_{k}}{\pi_{k}}+\lambda
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ahora
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\mathcal{L}}{\partial\lambda}=\sum_{k=1}^{K}\pi_{k}-1
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+por lo que 
+\begin_inset Formula $\sum_{k=1}^{K}\pi_{k}=1$
+\end_inset
+
+ y 
+\begin_inset Formula $\lambda=-N$
+\end_inset
+
+, entonces
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\pi_{k}^{*}=\frac{N_{k}}{N}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\begin{array}{ccc}
+1 & 0 & 0\\
+1 & 0 & 0\\
+0.057 & 0.943 & 0\\
+0 & 1 & 0\\
+0 & 0.066 & 0.943\\
+0 & 0 & 1\\
+0 & 0 & 1
+\end{array}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{1}^{0}=-4\rightarrow\mu_{1}^{1}=-2.7
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{2}^{0}=0\rightarrow\mu_{2}^{1}=-0.4
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu_{3}^{0}=8\rightarrow\mu_{3}^{1}=-2.7
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\pi_{1}^{0}=\frac{1}{3}\rightarrow\pi_{1}^{1}=0.29
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\pi_{2}^{0}=\frac{1}{3}\rightarrow\pi_{2}^{1}=0.29
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\pi_{3}^{0}=\frac{1}{3}\rightarrow\pi_{3}^{1}=0.42
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
