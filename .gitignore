@@ -3,7 +3,7 @@
 
 ## Here goes the list of folders and internal files to ignore 
 
-#*.docx
+*.docx
 *.pdf
 #*.py 
 
