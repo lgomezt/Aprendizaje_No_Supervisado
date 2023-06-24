@@ -1,6 +1,7 @@
 # Aprendizaje No Supervisado 
-
 Este repositorio contiene los cuadernos que guiarán al estudiante a través del curso de Aprendizaje No Supervisado de la [Maestría en Inteligencia Analítica de Datos](https://www.coursera.org/degrees/maestria-analitica-de-datos-uniandes) de la Universidad de los Andes. Los notebooks, quices y talleres acá consignados fueron desarrollados en conjunto por el profesor [Ignacio Sarmiento Barbieri](https://ignaciomsarmiento.github.io/) y Lucas Gómez Tobón. 
+
+Este proyecto busca acercar el conocimiento sobre Aprendizaje de Máquinas a los países de habla hispana: 🇦🇷 🇧🇴 🇨🇱 🇨🇴 🇨🇷 🇨🇺 🇩🇴 🇪🇨 🇸🇻 🇬🇹 🇭🇳 🇲🇽 🇳🇮 🇵🇦 🇵🇾 🇵🇪 🇵🇷 🇪🇸 🇺🇾 🇻🇪
 
 ## Tabla de contenido
 El contenido del curso está dividido en semanas. Cada semana contiene un subconjunto de *jupyter notebooks* con los tópicos de la semana. En los *notebooks* encontrará las explicaciones teóricas y los tutoriales prácticos en Python para cada técnica. Adicionalmente, al final de cada semana encontrará un taller para poner en práctica el conocimiento aprendido durante la semana. Los cuadernos se encuentran en la carpeta de `Tutoriales` del repositorio, sin embargo, acá le presentamos una Tabla de Contenido con los hipervínculos a cada uno de los cuadernos para facilitar el acceso.
